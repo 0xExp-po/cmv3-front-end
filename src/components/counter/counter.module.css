@@ -1,0 +1,30 @@
+.wrapper {
+    width:100%;
+    box-sizing: border-box;
+    padding:0 20px;
+}
+
+.container {
+    width:100%;
+    height:5px;
+    box-sizing: border-box;
+    background-color:#ffffff18;
+}
+
+.fill {
+    width:100%;
+    background-color:  var(--green);
+    -webkit-box-shadow: var(--glow-green);
+    -moz-box-shadow: var(--glow-green);
+    box-shadow: var(--glow-green);
+    height:5px;
+    transition: 0.5s;
+}
+
+.counter {
+    float:right;
+    opacity: .3;
+    padding:5px;
+    font-weight: 100;
+    font-size: 17px;
+}

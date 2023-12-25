@@ -1,0 +1,116 @@
+.wrapper {
+  padding: 20px;
+}
+
+.container {
+  width: 100%;
+}
+
+.container .title {
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0.6;
+}
+
+.phase {
+  width: 100%;
+  height:100px;
+  margin-top: 25px;
+  margin-bottom: -25px;
+  padding: 15px 0;
+}
+
+.phase .info {
+  width: 100%;
+  position: relative;
+}
+
+.phase .info .title {
+  font-size: 17px;
+  font-weight: 800;
+  opacity: 1;
+}
+
+.phase .info .error {
+  opacity: 0.8;
+  color: var(--red);
+  margin: 10px 0;
+  transition: 1s;
+  font-size: 15px;
+  height: 20px;
+  opacity: 1;
+  overflow: hidden;
+}
+
+.phase .info .no_error {
+  color: var(--green);
+}
+
+.phase .info .status {
+  float: right;
+  font-size: 10px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+
+.phase .info .price {
+  margin: 15px 0;
+  opacity: 0.6;
+}
+
+.phase .info .mint {
+  position: absolute;
+  bottom:0;right:0;
+}
+
+.dividerWrapper {
+  margin-top: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 20px;
+}
+
+.divider {
+  width: 100%;
+  height:1px;
+  background-color:#ffffff18;
+  transition: .3s;
+  opacity: 1;
+  height: 3px;
+  overflow: hidden;
+  position: relative;
+}
+.divider_loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150px;
+  width: 150px; 
+  height: 100%;
+  background: rgb(255,255,255);
+  background: linear-gradient(90deg, rgba(255,255,255,0.17) 0%, rgba(45,255,195,1) 25%, rgba(45,255,195,1) 50%, rgba(45,255,195,1) 75%, rgba(255,255,255,0.18) 100%);
+  -webkit-box-shadow: var(--glow-green);
+  -moz-box-shadow: var(--glow-green);
+  box-shadow: var(--glow-green);
+  animation: swipe 1.4s linear infinite; 
+}
+
+.phase .skeleton {
+  height:10px;
+  margin:10px 0;
+  background-color: #ffffff10;
+  border-radius: 16px;
+}
+
+@keyframes swipe {
+  0% {
+    left: -150px; /* Starting position of the swipe */
+  }
+  80% {
+    left: 100%; /* Ending position of the swipe, moving it across the loader */
+  }
+  100% {
+    left: 100%; /* Ending position of the swipe, moving it across the loader */
+  }
+}

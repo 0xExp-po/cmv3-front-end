@@ -1,95 +1,53 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
+
+import { Cmv3Provider } from "use-cmv3";
+
+import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
+import { WalletProvider } from "@solana/wallet-adapter-react";
+import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
+import { useMemo } from "react";
+
+import Mint from "./mint";
+
+require("@solana/wallet-adapter-react-ui/styles.css");
 
 export default function Home() {
+  let network = WalletAdapterNetwork.Devnet;
+  if (
+    process.env.NEXT_PUBLIC_ENVIRONMENT === "mainnet-beta" ||
+    process.env.NEXT_PUBLIC_ENVIRONMENT === "mainnet"
+  ) {
+    network = WalletAdapterNetwork.Mainnet;
+  }
+  let endpoint = "https://api.devnet.solana.com";
+  if (process.env.NEXT_PUBLIC_RPC) {
+    endpoint = process.env.NEXT_PUBLIC_RPC;
+  }
+  const wallets = useMemo(() => [], []);
+
+  const allowLists = new Map<string, Array<string>>([
+    ["OGs", ["61DZsc2GKvgygUMgmNcYmT2jVjdJmxWEiPyn3nfJW3Td"]],
+  ]);
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
+    <WalletProvider wallets={wallets}>
+      <WalletModalProvider>
+        <Cmv3Provider
+          config={{
+            candyMachineId: process.env.NEXT_PUBLIC_CANDY_MACHINE_ID,
+            candyMachineLUT: process.env.NEXT_PUBLIC_CANDY_MACHINE_LUT,
+            endpoint: endpoint,
+          }}
+          metadata={{
+            allowLists: allowLists,
+          }}
         >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+          <div className="header">
+            Made with ❤️ by <a href="https://github.com/0xalby">alby</a>
+          </div>
+          <Mint />
+        </Cmv3Provider>
+      </WalletModalProvider>
+    </WalletProvider>
+  );
 }

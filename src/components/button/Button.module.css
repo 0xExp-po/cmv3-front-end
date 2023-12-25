@@ -1,0 +1,35 @@
+.container {
+    border: 1px solid #ffffff30;
+    color: white;
+    border-radius: 10px;
+    font-size: 12px;
+    vertical-align: middle;
+    width:fit-content;
+    height:fit-content;
+    line-height:30px;
+    padding: 5px 10px;
+    cursor: pointer;
+    width: 110px;
+    text-align: center;
+    font-weight: 500;
+    transition: .3s;
+    user-select: none;
+}
+
+
+.container:hover {
+    background-color:#ffffff15;
+}
+
+.active {
+    border-color: var(--green);
+}
+
+.disabled {
+    opacity: .4;
+    background-color: #ffffff15;
+    pointer-events: none;
+}
+
+
+
