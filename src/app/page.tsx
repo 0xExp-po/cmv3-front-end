@@ -43,7 +43,7 @@ export default function Home() {
           }}
         >
           <div className="header">
-            Made with ❤️ by <a href="https://github.com/0xalby">alby</a>
+            <a href="https://github.com/0xalby">0xalby</a>
           </div>
           <Mint />
         </Cmv3Provider>
