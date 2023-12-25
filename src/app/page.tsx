@@ -35,7 +35,7 @@ export default function Home() {
         <Cmv3Provider
           config={{
             candyMachineId: process.env.NEXT_PUBLIC_CANDY_MACHINE_ID,
-            candyMachineLUT: process.env.NEXT_PUBLIC_CANDY_MACHINE_LUT,
+            candyMachineLut: process.env.NEXT_PUBLIC_CANDY_MACHINE_LUT,
             endpoint: endpoint,
           }}
           metadata={{
